@@ -6,13 +6,13 @@ using System.Threading.Tasks;
 
 namespace AlcSimulator.DL
 {
-    public class Data
+    public class MessageData : BoudRateData
     {
         
 
         Dictionary<int, string> alcData = new Dictionary<int, string>();
 
-        public void AddData()
+        void AddData()
         {
             alcData.Add(1, "$abt_PCRLF");
             alcData.Add(2, "$abt_SCRLF");
@@ -26,7 +26,6 @@ namespace AlcSimulator.DL
             alcData.Add(10, "$abt_Err-tCRLF");
 
         }
-
     }
-    
+
 }

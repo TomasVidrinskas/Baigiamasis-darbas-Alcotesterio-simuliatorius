@@ -41,8 +41,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="ComP.cs" />
-    <Compile Include="ComPort.cs" />
+    <Compile Include="GetComPortNames.cs" />
+    <Compile Include="ComPortConfig.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

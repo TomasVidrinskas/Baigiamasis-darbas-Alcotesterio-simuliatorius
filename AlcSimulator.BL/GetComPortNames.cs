@@ -8,7 +8,7 @@ using System.IO.Ports;
 namespace AlcSimulator.BL
 {
 
-    public class ComP
+    public class GetComPortNames
     { 
         public string[] PortsSelection()
         {

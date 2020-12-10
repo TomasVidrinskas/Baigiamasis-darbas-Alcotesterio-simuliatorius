@@ -278,11 +278,13 @@ namespace Baigiamasis_darbas_Alcotesterio_simuliatorius
             // 
             // boud_comboBox2
             // 
+            this.boud_comboBox2.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.boud_comboBox2.FormattingEnabled = true;
             this.boud_comboBox2.Location = new System.Drawing.Point(168, 46);
             this.boud_comboBox2.Name = "boud_comboBox2";
             this.boud_comboBox2.Size = new System.Drawing.Size(156, 21);
             this.boud_comboBox2.TabIndex = 1;
+            this.boud_comboBox2.SelectedIndexChanged += new System.EventHandler(this.boud_comboBox2_SelectedIndexChanged);
             // 
             // comPort_comboBox1
             // 

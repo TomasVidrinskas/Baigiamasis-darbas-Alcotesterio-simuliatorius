@@ -8,7 +8,7 @@ using static System.Net.Mime.MediaTypeNames;
 
 namespace AlcSimulator.BL
 {
-    public class ComPort
+    public class ComPortConfig
     {
         class SerialPortProgram
         {

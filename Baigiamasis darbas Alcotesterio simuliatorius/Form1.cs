@@ -9,6 +9,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using AlcSimulator.BL;
+using AlcSimulator.DL;
 
 namespace Baigiamasis_darbas_Alcotesterio_simuliatorius
 {
@@ -17,35 +18,14 @@ namespace Baigiamasis_darbas_Alcotesterio_simuliatorius
         public Main_Form1()
         {
             InitializeComponent();
-            StartUpFunction();
+            ListAvailableComPorts();
+            ListBoudRate();
         }
 
         string currentComPort = "";
         string currentBoudRate = "";
 
-        //private void btnok_click(object sender, eventargs e)
-        //{
-        //    if (cmbserialports.selectedindex > -1)
-        //    {
-        //        messagebox.show(string.format("you selected port '{0}'", cmbserialports.selecteditem));
-        //        connect(cmbserialports.selecteditem.tostring());
-        //    }
-        //    else
-        //    {
-        //        messagebox.show("please select a port first");
-        //    }
-        //}
 
-        //private void connect(string portname)
-        //{
-        //    var port = new serialport(portname);
-        //    if (!port.isopen)
-        //    {
-        //        port.baudrate = 19200;
-        //        port.open();
-        //        //continue here....
-        //    }
-        //}
 
         private void comPort_comboBox1_SelectedIndexChanged(object sender, EventArgs e)
         {
@@ -56,17 +36,34 @@ namespace Baigiamasis_darbas_Alcotesterio_simuliatorius
         {
 
         }
-
-        void StartUpFunction()
+        private void boud_comboBox2_SelectedIndexChanged(object sender, EventArgs e)
         {
-            ComP Pimas = new ComP();
+            currentBoudRate = boud_comboBox2.SelectedItem.ToString();
+        }
 
-            string[] pippas = Pimas.PortsSelection();
-            foreach (string i in pippas)
+        void ListAvailableComPorts()
+        {
+            GetComPortNames port = new GetComPortNames();
+
+            string[] portsArray = port.PortsSelection();
+            foreach (string i in portsArray)
             {
                 comPort_comboBox1.Items.Add(i);
             }
             comPort_comboBox1.SelectedIndex = 0;
-        } 
+        }
+        void ListBoudRate()
+        {
+            BoudRateData boudRate = new BoudRateData();
+
+            var boudList = boudRate.BoudRateList();
+            foreach (int i in boudList)
+            {
+                boud_comboBox2.Items.Add(i);
+            }
+            boud_comboBox2.SelectedIndex = 0;
+        }
+
+
     }
 }
