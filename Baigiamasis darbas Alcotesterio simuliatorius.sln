@@ -5,6 +5,10 @@ VisualStudioVersion = 16.0.30717.126
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Baigiamasis darbas Alcotesterio simuliatorius", "Baigiamasis darbas Alcotesterio simuliatorius\Baigiamasis darbas Alcotesterio simuliatorius.csproj", "{41EF7DF5-7C18-4660-8945-5B51B64CF146}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AlcSimulator.BL", "AlcSimulator.BL\AlcSimulator.BL.csproj", "{005984D6-9DD6-4995-A59F-47A624E9C23E}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AlcSimulator.DL", "AlcSimulator.DL\AlcSimulator.DL.csproj", "{F561B5E2-AB64-45F0-B25A-0C486EA9B45A}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -15,6 +19,14 @@ Global
 		{41EF7DF5-7C18-4660-8945-5B51B64CF146}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{41EF7DF5-7C18-4660-8945-5B51B64CF146}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{41EF7DF5-7C18-4660-8945-5B51B64CF146}.Release|Any CPU.Build.0 = Release|Any CPU
+		{005984D6-9DD6-4995-A59F-47A624E9C23E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{005984D6-9DD6-4995-A59F-47A624E9C23E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{005984D6-9DD6-4995-A59F-47A624E9C23E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{005984D6-9DD6-4995-A59F-47A624E9C23E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F561B5E2-AB64-45F0-B25A-0C486EA9B45A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F561B5E2-AB64-45F0-B25A-0C486EA9B45A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F561B5E2-AB64-45F0-B25A-0C486EA9B45A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F561B5E2-AB64-45F0-B25A-0C486EA9B45A}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

@@ -45,13 +45,22 @@ namespace Baigiamasis_darbas_Alcotesterio_simuliatorius
             this.errTemp_checkBox8 = new System.Windows.Forms.CheckBox();
             this.errSuck_checkBox9 = new System.Windows.Forms.CheckBox();
             this.errBreathTemp_checkBox1 = new System.Windows.Forms.CheckBox();
+            this.textBox1 = new System.Windows.Forms.TextBox();
+            this.label4 = new System.Windows.Forms.Label();
+            this.label1 = new System.Windows.Forms.Label();
+            this.label2 = new System.Windows.Forms.Label();
+            this.data_groupBox1 = new System.Windows.Forms.GroupBox();
+            this.tx_listBox1 = new System.Windows.Forms.ListBox();
+            this.rx_listBox2 = new System.Windows.Forms.ListBox();
             this.controlPanel_groupBox1.SuspendLayout();
             this.comPort_groupBox1.SuspendLayout();
             this.alcoMsg_groupBox1.SuspendLayout();
+            this.data_groupBox1.SuspendLayout();
             this.SuspendLayout();
             // 
             // controlPanel_groupBox1
             // 
+            this.controlPanel_groupBox1.Controls.Add(this.data_groupBox1);
             this.controlPanel_groupBox1.Controls.Add(this.alcoMsg_groupBox1);
             this.controlPanel_groupBox1.Controls.Add(this.comPort_groupBox1);
             this.controlPanel_groupBox1.Location = new System.Drawing.Point(12, 12);
@@ -63,12 +72,14 @@ namespace Baigiamasis_darbas_Alcotesterio_simuliatorius
             // 
             // comPort_groupBox1
             // 
+            this.comPort_groupBox1.Controls.Add(this.label2);
+            this.comPort_groupBox1.Controls.Add(this.label1);
             this.comPort_groupBox1.Controls.Add(this.connect_button1);
             this.comPort_groupBox1.Controls.Add(this.boud_comboBox2);
             this.comPort_groupBox1.Controls.Add(this.comPort_comboBox1);
             this.comPort_groupBox1.Location = new System.Drawing.Point(6, 19);
             this.comPort_groupBox1.Name = "comPort_groupBox1";
-            this.comPort_groupBox1.Size = new System.Drawing.Size(469, 101);
+            this.comPort_groupBox1.Size = new System.Drawing.Size(469, 82);
             this.comPort_groupBox1.TabIndex = 0;
             this.comPort_groupBox1.TabStop = false;
             this.comPort_groupBox1.Text = "COM Port setting:";
@@ -100,6 +111,8 @@ namespace Baigiamasis_darbas_Alcotesterio_simuliatorius
             // 
             // alcoMsg_groupBox1
             // 
+            this.alcoMsg_groupBox1.Controls.Add(this.label4);
+            this.alcoMsg_groupBox1.Controls.Add(this.textBox1);
             this.alcoMsg_groupBox1.Controls.Add(this.errBreathTemp_checkBox1);
             this.alcoMsg_groupBox1.Controls.Add(this.errSuck_checkBox9);
             this.alcoMsg_groupBox1.Controls.Add(this.errTemp_checkBox8);
@@ -126,7 +139,7 @@ namespace Baigiamasis_darbas_Alcotesterio_simuliatorius
             this.on_checkBox1.TabIndex = 0;
             this.on_checkBox1.Text = "Power ON";
             this.on_checkBox1.UseVisualStyleBackColor = true;
-            this.on_checkBox1.CheckedChanged += new System.EventHandler(this.checkBox1_CheckedChanged);
+            
             // 
             // blow_checkBox2
             // 
@@ -173,9 +186,9 @@ namespace Baigiamasis_darbas_Alcotesterio_simuliatorius
             this.checkBox6.AutoSize = true;
             this.checkBox6.Location = new System.Drawing.Point(6, 134);
             this.checkBox6.Name = "checkBox6";
-            this.checkBox6.Size = new System.Drawing.Size(94, 17);
+            this.checkBox6.Size = new System.Drawing.Size(96, 17);
             this.checkBox6.TabIndex = 5;
-            this.checkBox6.Text = "Test value *‰";
+            this.checkBox6.Text = "Test value *g/l";
             this.checkBox6.UseVisualStyleBackColor = true;
             // 
             // errFlow_checkBox7
@@ -187,7 +200,7 @@ namespace Baigiamasis_darbas_Alcotesterio_simuliatorius
             this.errFlow_checkBox7.TabIndex = 6;
             this.errFlow_checkBox7.Text = "Error for blowing flow";
             this.errFlow_checkBox7.UseVisualStyleBackColor = true;
-            this.errFlow_checkBox7.CheckedChanged += new System.EventHandler(this.checkBox7_CheckedChanged);
+            
             // 
             // errTemp_checkBox8
             // 
@@ -219,6 +232,68 @@ namespace Baigiamasis_darbas_Alcotesterio_simuliatorius
             this.errBreathTemp_checkBox1.Text = "Error in breath temperature";
             this.errBreathTemp_checkBox1.UseVisualStyleBackColor = true;
             // 
+            // textBox1
+            // 
+            this.textBox1.Location = new System.Drawing.Point(108, 131);
+            this.textBox1.Name = "textBox1";
+            this.textBox1.Size = new System.Drawing.Size(82, 20);
+            this.textBox1.TabIndex = 10;
+            // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.Location = new System.Drawing.Point(196, 135);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(81, 13);
+            this.label4.TabIndex = 11;
+            this.label4.Text = "from 0 to 99999";
+            
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(9, 26);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(29, 13);
+            this.label1.TabIndex = 3;
+            this.label1.Text = "Port:";
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Location = new System.Drawing.Point(168, 28);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(56, 13);
+            this.label2.TabIndex = 4;
+            this.label2.Text = "Boud rate:";
+            // 
+            // data_groupBox1
+            // 
+            this.data_groupBox1.Controls.Add(this.rx_listBox2);
+            this.data_groupBox1.Controls.Add(this.tx_listBox1);
+            this.data_groupBox1.Location = new System.Drawing.Point(6, 107);
+            this.data_groupBox1.Name = "data_groupBox1";
+            this.data_groupBox1.Size = new System.Drawing.Size(468, 312);
+            this.data_groupBox1.TabIndex = 2;
+            this.data_groupBox1.TabStop = false;
+            this.data_groupBox1.Text = "Data";
+            // 
+            // tx_listBox1
+            // 
+            this.tx_listBox1.FormattingEnabled = true;
+            this.tx_listBox1.Location = new System.Drawing.Point(5, 16);
+            this.tx_listBox1.Name = "tx_listBox1";
+            this.tx_listBox1.Size = new System.Drawing.Size(457, 134);
+            this.tx_listBox1.TabIndex = 0;
+            // 
+            // rx_listBox2
+            // 
+            this.rx_listBox2.FormattingEnabled = true;
+            this.rx_listBox2.Location = new System.Drawing.Point(6, 157);
+            this.rx_listBox2.Name = "rx_listBox2";
+            this.rx_listBox2.Size = new System.Drawing.Size(455, 147);
+            this.rx_listBox2.TabIndex = 1;
+            // 
             // Main_Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -229,8 +304,10 @@ namespace Baigiamasis_darbas_Alcotesterio_simuliatorius
             this.Text = "Alcotester Simulator";
             this.controlPanel_groupBox1.ResumeLayout(false);
             this.comPort_groupBox1.ResumeLayout(false);
+            this.comPort_groupBox1.PerformLayout();
             this.alcoMsg_groupBox1.ResumeLayout(false);
             this.alcoMsg_groupBox1.PerformLayout();
+            this.data_groupBox1.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -253,6 +330,13 @@ namespace Baigiamasis_darbas_Alcotesterio_simuliatorius
         private System.Windows.Forms.CheckBox blow_checkBox2;
         private System.Windows.Forms.CheckBox on_checkBox1;
         private System.Windows.Forms.CheckBox errBreathTemp_checkBox1;
+        private System.Windows.Forms.Label label4;
+        private System.Windows.Forms.TextBox textBox1;
+        private System.Windows.Forms.GroupBox data_groupBox1;
+        private System.Windows.Forms.ListBox rx_listBox2;
+        private System.Windows.Forms.ListBox tx_listBox1;
+        private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.Label label1;
     }
 }
 
