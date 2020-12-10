@@ -41,8 +41,15 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="ComP.cs" />
     <Compile Include="ComPort.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\AlcSimulator.DL\AlcSimulator.DL.csproj">
+      <Project>{f561b5e2-ab64-45f0-b25a-0c486ea9b45a}</Project>
+      <Name>AlcSimulator.DL</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

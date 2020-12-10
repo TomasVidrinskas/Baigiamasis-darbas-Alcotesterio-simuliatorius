@@ -79,5 +79,15 @@
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\AlcSimulator.BL\AlcSimulator.BL.csproj">
+      <Project>{005984d6-9dd6-4995-a59f-47a624e9c23e}</Project>
+      <Name>AlcSimulator.BL</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\AlcSimulator.DL\AlcSimulator.DL.csproj">
+      <Project>{f561b5e2-ab64-45f0-b25a-0c486ea9b45a}</Project>
+      <Name>AlcSimulator.DL</Name>
+    </ProjectReference>
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
