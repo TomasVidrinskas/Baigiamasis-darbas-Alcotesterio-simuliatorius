@@ -31,15 +31,22 @@ namespace Baigiamasis_darbas_Alcotesterio_simuliatorius
         {
              currentComPort = comPort_comboBox1.SelectedItem.ToString();
         }
-
-        private void on_checkBox1_CheckedChanged(object sender, EventArgs e)
-        {
-
-        }
+        
         private void boud_comboBox2_SelectedIndexChanged(object sender, EventArgs e)
         {
             currentBoudRate = boud_comboBox2.SelectedItem.ToString();
         }
+        private void on_checkBox1_CheckedChanged(object sender, EventArgs e)
+        {
+
+        }
+        private void connect_button1_Click(object sender, EventArgs e)
+        {
+
+        }
+
+
+
 
         void ListAvailableComPorts()
         {

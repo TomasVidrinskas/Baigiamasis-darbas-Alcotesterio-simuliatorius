@@ -275,6 +275,7 @@ namespace Baigiamasis_darbas_Alcotesterio_simuliatorius
             this.connect_button1.TabIndex = 2;
             this.connect_button1.Text = "Connect";
             this.connect_button1.UseVisualStyleBackColor = true;
+            this.connect_button1.Click += new System.EventHandler(this.connect_button1_Click);
             // 
             // boud_comboBox2
             // 
