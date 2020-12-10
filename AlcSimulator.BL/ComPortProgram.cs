@@ -8,7 +8,7 @@ using static System.Net.Mime.MediaTypeNames;
 
 namespace AlcSimulator.BL
 {
-    public class ComPortConfig
+    public class ComPortProgram
     {
         class SerialPortProgram
         {
@@ -38,8 +38,8 @@ namespace AlcSimulator.BL
               //  Application.Run();
             }
 
-            private void port_DataReceived(object sender,
-              SerialDataReceivedEventArgs e)
+            private void port_DataReceived(object sender, SerialDataReceivedEventArgs e)
+
             {
                 // Show all the incoming data in the port's buffer
                 Console.WriteLine(port.ReadExisting());

@@ -88,6 +88,7 @@ namespace Baigiamasis_darbas_Alcotesterio_simuliatorius
             this.rx_listBox2.Name = "rx_listBox2";
             this.rx_listBox2.Size = new System.Drawing.Size(455, 147);
             this.rx_listBox2.TabIndex = 1;
+            this.rx_listBox2.SelectedIndexChanged += new System.EventHandler(this.rx_listBox2_SelectedIndexChanged);
             // 
             // tx_listBox1
             // 
@@ -96,6 +97,7 @@ namespace Baigiamasis_darbas_Alcotesterio_simuliatorius
             this.tx_listBox1.Name = "tx_listBox1";
             this.tx_listBox1.Size = new System.Drawing.Size(457, 134);
             this.tx_listBox1.TabIndex = 0;
+            this.tx_listBox1.SelectedIndexChanged += new System.EventHandler(this.tx_listBox1_SelectedIndexChanged);
             // 
             // alcoMsg_groupBox1
             // 
