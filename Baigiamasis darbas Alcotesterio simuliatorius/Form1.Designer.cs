@@ -31,9 +31,8 @@ namespace Baigiamasis_darbas_Alcotesterio_simuliatorius
         {
             this.controlPanel_groupBox1 = new System.Windows.Forms.GroupBox();
             this.data_groupBox1 = new System.Windows.Forms.GroupBox();
-            this.rx_listBox2 = new System.Windows.Forms.ListBox();
-            this.tx_listBox1 = new System.Windows.Forms.ListBox();
             this.alcoMsg_groupBox1 = new System.Windows.Forms.GroupBox();
+            this.txtReceive = new System.Windows.Forms.TextBox();
             this.label4 = new System.Windows.Forms.Label();
             this.textBox1 = new System.Windows.Forms.TextBox();
             this.errBreathTemp_checkBox1 = new System.Windows.Forms.CheckBox();
@@ -72,32 +71,13 @@ namespace Baigiamasis_darbas_Alcotesterio_simuliatorius
             // 
             // data_groupBox1
             // 
-            this.data_groupBox1.Controls.Add(this.rx_listBox2);
-            this.data_groupBox1.Controls.Add(this.tx_listBox1);
+            this.data_groupBox1.Controls.Add(this.txtReceive);
             this.data_groupBox1.Location = new System.Drawing.Point(6, 107);
             this.data_groupBox1.Name = "data_groupBox1";
             this.data_groupBox1.Size = new System.Drawing.Size(468, 312);
             this.data_groupBox1.TabIndex = 2;
             this.data_groupBox1.TabStop = false;
             this.data_groupBox1.Text = "Data";
-            // 
-            // rx_listBox2
-            // 
-            this.rx_listBox2.FormattingEnabled = true;
-            this.rx_listBox2.Location = new System.Drawing.Point(6, 157);
-            this.rx_listBox2.Name = "rx_listBox2";
-            this.rx_listBox2.Size = new System.Drawing.Size(455, 147);
-            this.rx_listBox2.TabIndex = 1;
-            this.rx_listBox2.SelectedIndexChanged += new System.EventHandler(this.rx_listBox2_SelectedIndexChanged);
-            // 
-            // tx_listBox1
-            // 
-            this.tx_listBox1.FormattingEnabled = true;
-            this.tx_listBox1.Location = new System.Drawing.Point(5, 16);
-            this.tx_listBox1.Name = "tx_listBox1";
-            this.tx_listBox1.Size = new System.Drawing.Size(457, 134);
-            this.tx_listBox1.TabIndex = 0;
-            this.tx_listBox1.SelectedIndexChanged += new System.EventHandler(this.tx_listBox1_SelectedIndexChanged);
             // 
             // alcoMsg_groupBox1
             // 
@@ -119,6 +99,16 @@ namespace Baigiamasis_darbas_Alcotesterio_simuliatorius
             this.alcoMsg_groupBox1.TabIndex = 1;
             this.alcoMsg_groupBox1.TabStop = false;
             this.alcoMsg_groupBox1.Text = "Alcotester message settings:";
+            // 
+            // txtReceive
+            // 
+            this.txtReceive.Location = new System.Drawing.Point(0, 19);
+            this.txtReceive.Multiline = true;
+            this.txtReceive.Name = "txtReceive";
+            this.txtReceive.ReadOnly = true;
+            this.txtReceive.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
+            this.txtReceive.Size = new System.Drawing.Size(462, 287);
+            this.txtReceive.TabIndex = 12;
             // 
             // label4
             // 
@@ -309,6 +299,7 @@ namespace Baigiamasis_darbas_Alcotesterio_simuliatorius
             this.Text = "Alcotester Simulator";
             this.controlPanel_groupBox1.ResumeLayout(false);
             this.data_groupBox1.ResumeLayout(false);
+            this.data_groupBox1.PerformLayout();
             this.alcoMsg_groupBox1.ResumeLayout(false);
             this.alcoMsg_groupBox1.PerformLayout();
             this.comPort_groupBox1.ResumeLayout(false);
@@ -338,10 +329,9 @@ namespace Baigiamasis_darbas_Alcotesterio_simuliatorius
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.TextBox textBox1;
         private System.Windows.Forms.GroupBox data_groupBox1;
-        private System.Windows.Forms.ListBox rx_listBox2;
-        private System.Windows.Forms.ListBox tx_listBox1;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.TextBox txtReceive;
     }
 }
 

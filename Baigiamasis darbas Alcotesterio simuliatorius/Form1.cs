@@ -20,11 +20,13 @@ namespace Baigiamasis_darbas_Alcotesterio_simuliatorius
             InitializeComponent();
             ListAvailableComPorts();
             ListBoudRate();
+            connectDisconnect = true;
         }
 
         string currentComPort = "";
         string currentBoudRate = "";
-        
+        public bool connectDisconnect;
+        private SerialPort port;
 
 
         private void on_checkBox1_CheckedChanged(object sender, EventArgs e)
@@ -40,25 +42,22 @@ namespace Baigiamasis_darbas_Alcotesterio_simuliatorius
             currentBoudRate = boud_comboBox2.SelectedItem.ToString();
         }
         // Mygtuko paspaudimas
-        private void connect_button1_Click(object sender, EventArgs e)
-        {
-            //ConnectToSelectedComPort();
-            //SerialPortProgram();
-            int boud = int.Parse(currentBoudRate);
-            SerialPort port1 = new SerialPort(currentComPort, boud, Parity.None, 8, StopBits.One);
-            port1.DataReceived += new SerialDataReceivedEventHandler(port_DataReceived);
-            port1.Open();
+        
 
-        }
-        private void tx_listBox1_SelectedIndexChanged(object sender, EventArgs e)
+        public void connect_button1_Click(object sender, EventArgs e)
         {
 
+            ConnectButtonStatusHandler(port);
+
+            //int boud = int.Parse(currentBoudRate);
+            //SerialPort port1 = new SerialPort(currentComPort, boud, Parity.None, 8, StopBits.One);
+            //port1.DataReceived += new SerialDataReceivedEventHandler(port_DataReceived);
+            //port1.Open();
+            //Application.Run();
+
+
         }
 
-        private void rx_listBox2_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            //port_DataReceived();
-        }
 
 
 
@@ -84,51 +83,82 @@ namespace Baigiamasis_darbas_Alcotesterio_simuliatorius
             }
             boud_comboBox2.SelectedIndex = 0;
         }
-        SerialPort ConnectToSelectedComPort()
+
+        void ConnectButtonStatusHandler(SerialPort port)
+        {
+            try
+            {
+
+
+                if (connectDisconnect)
+                {
+                    DateTime dt = DateTime.Now;
+                    String dtShort = dt.ToShortTimeString();
+                    port = new SerialPort();
+                    connect_button1.Text = "Disconnect";
+                    portOpen(out port);
+                    txtReceive.AppendText("[" + dtShort + "] " + "Connected\n");
+                    port.DataReceived += new SerialDataReceivedEventHandler(portDataReceived);
+                    connectDisconnect = false;
+                }
+                else
+                {
+                    connect_button1.Text = "Connect";
+                    portClose(port);
+                    connectDisconnect = true;
+                }
+            }
+            catch (Exception ex) { MessageBox.Show(ex.ToString(), "Error"); }
+        }
+
+
+
+
+        //=====Portas========================================================
+        SerialPort initializeSerialPort()
         {
             int boud = int.Parse(currentBoudRate);
-            SerialPort port1 = new SerialPort(currentComPort, boud, Parity.None, 8, StopBits.One) ;
-            return port1;
+            port = new SerialPort(currentComPort, boud, Parity.None, 8, StopBits.One);
+            return port;
         }
 
-
-
-
-
-        //=============================================================
-
-        // Create the serial port with basic settings
-        //private SerialPort port = new SerialPort("", 9600, Parity.None, 8, StopBits.One);
-
-        //[STAThread]
-        //static void (string[] args)
+        //void SerialPortProgram()
         //{
-        //    // Instatiate this class
-        //    new SerialPortProgram();
+        //    SerialPort port = initializeSerialPort();
+
+        //    //Console.WriteLine("Incoming Data:");
+
+        //    // Attach a method to be called when there
+        //    // is data waiting in the port's buffer
+        //    port.DataReceived += new SerialDataReceivedEventHandler(portDataReceived);
+
+            
+        //    port.Open();
+
+        //    // Enter an application loop to keep this thread alive
+        //    //Application.Run(SerialPortProgram());
         //}
-
-        void SerialPortProgram()
+        void portOpen(out SerialPort port)
         {
-            SerialPort port = ConnectToSelectedComPort();
-
-            //Console.WriteLine("Incoming Data:");
-
-            // Attach a method to be called when there
-            // is data waiting in the port's buffer
-            port.DataReceived += new SerialDataReceivedEventHandler(port_DataReceived);
-
             // Begin communications
+            port = initializeSerialPort();
             port.Open();
-
-            // Enter an application loop to keep this thread alive
-              //Application.Run();
         }
 
-        void port_DataReceived(object sender, SerialDataReceivedEventArgs e)
+        void portDataReceived(object sender, SerialDataReceivedEventArgs e)
         {
             // Show all the incoming data in the port's buffer
-            SerialPort port = ConnectToSelectedComPort();
-            port.ReadExisting();
+            DateTime dt = DateTime.Now;
+            String dtShort = dt.ToShortTimeString();
+
+            //txtReceive.AppendText("[" + dtShort + "] " + "Received: " + port.ReadExisting() + "\n");
+            txtReceive.AppendText($"[{dtShort}] Reveived: {port.ReadExisting()} \n");
+
+        }
+        void portClose(SerialPort port)
+        {
+            //SerialPort port = initializeSerialPort();
+            port.Close();
         }
 
 
