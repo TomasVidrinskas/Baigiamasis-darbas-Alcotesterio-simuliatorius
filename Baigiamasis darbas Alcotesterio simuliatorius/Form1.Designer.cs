@@ -32,7 +32,6 @@ namespace Baigiamasis_darbas_Alcotesterio_simuliatorius
             this.controlPanel_groupBox1 = new System.Windows.Forms.GroupBox();
             this.data_groupBox1 = new System.Windows.Forms.GroupBox();
             this.alcoMsg_groupBox1 = new System.Windows.Forms.GroupBox();
-            this.txtReceive = new System.Windows.Forms.TextBox();
             this.label4 = new System.Windows.Forms.Label();
             this.textBox1 = new System.Windows.Forms.TextBox();
             this.errBreathTemp_checkBox1 = new System.Windows.Forms.CheckBox();
@@ -52,6 +51,7 @@ namespace Baigiamasis_darbas_Alcotesterio_simuliatorius
             this.boud_comboBox2 = new System.Windows.Forms.ComboBox();
             this.comPort_comboBox1 = new System.Windows.Forms.ComboBox();
             this.send_button1 = new System.Windows.Forms.Button();
+            this.richTextBox1 = new System.Windows.Forms.RichTextBox();
             this.controlPanel_groupBox1.SuspendLayout();
             this.data_groupBox1.SuspendLayout();
             this.alcoMsg_groupBox1.SuspendLayout();
@@ -72,7 +72,7 @@ namespace Baigiamasis_darbas_Alcotesterio_simuliatorius
             // 
             // data_groupBox1
             // 
-            this.data_groupBox1.Controls.Add(this.txtReceive);
+            this.data_groupBox1.Controls.Add(this.richTextBox1);
             this.data_groupBox1.Location = new System.Drawing.Point(6, 107);
             this.data_groupBox1.Name = "data_groupBox1";
             this.data_groupBox1.Size = new System.Drawing.Size(468, 312);
@@ -101,16 +101,6 @@ namespace Baigiamasis_darbas_Alcotesterio_simuliatorius
             this.alcoMsg_groupBox1.TabIndex = 1;
             this.alcoMsg_groupBox1.TabStop = false;
             this.alcoMsg_groupBox1.Text = "Alcotester message settings:";
-            // 
-            // txtReceive
-            // 
-            this.txtReceive.Location = new System.Drawing.Point(0, 19);
-            this.txtReceive.Multiline = true;
-            this.txtReceive.Name = "txtReceive";
-            this.txtReceive.ReadOnly = true;
-            this.txtReceive.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
-            this.txtReceive.Size = new System.Drawing.Size(462, 287);
-            this.txtReceive.TabIndex = 12;
             // 
             // label4
             // 
@@ -301,6 +291,15 @@ namespace Baigiamasis_darbas_Alcotesterio_simuliatorius
             this.send_button1.UseVisualStyleBackColor = true;
             this.send_button1.Click += new System.EventHandler(this.send_button1_Click);
             // 
+            // richTextBox1
+            // 
+            this.richTextBox1.Location = new System.Drawing.Point(6, 19);
+            this.richTextBox1.Name = "richTextBox1";
+            this.richTextBox1.ReadOnly = true;
+            this.richTextBox1.Size = new System.Drawing.Size(456, 287);
+            this.richTextBox1.TabIndex = 13;
+            this.richTextBox1.Text = "";
+            // 
             // Main_Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -311,7 +310,6 @@ namespace Baigiamasis_darbas_Alcotesterio_simuliatorius
             this.Text = "Alcotester Simulator";
             this.controlPanel_groupBox1.ResumeLayout(false);
             this.data_groupBox1.ResumeLayout(false);
-            this.data_groupBox1.PerformLayout();
             this.alcoMsg_groupBox1.ResumeLayout(false);
             this.alcoMsg_groupBox1.PerformLayout();
             this.comPort_groupBox1.ResumeLayout(false);
@@ -343,8 +341,8 @@ namespace Baigiamasis_darbas_Alcotesterio_simuliatorius
         private System.Windows.Forms.GroupBox data_groupBox1;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.TextBox txtReceive;
         private System.Windows.Forms.Button send_button1;
+        private System.Windows.Forms.RichTextBox richTextBox1;
     }
 }
 

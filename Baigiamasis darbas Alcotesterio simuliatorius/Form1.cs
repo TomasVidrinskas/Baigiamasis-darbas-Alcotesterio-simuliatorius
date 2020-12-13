@@ -52,7 +52,7 @@ namespace Baigiamasis_darbas_Alcotesterio_simuliatorius
         }
         private void send_button1_Click(object sender, EventArgs e)
         {
-
+            SendButtonStatusHandler(port);
         }
 
 
@@ -94,7 +94,9 @@ namespace Baigiamasis_darbas_Alcotesterio_simuliatorius
 
                     connect_button1.Text = "Disconnect";// port is connected
                     portOpen(out port);
-                    txtReceive.AppendText($"[{dShort} {tShort}] Connected\r\n");
+                    richTextBox1.AppendText($"[{dShort} {tShort}] Connected\r\n");
+                    //port.DataReceived += new SerialDataReceivedEventHandler(portDataReceived);
+                    
                     port.DataReceived += new SerialDataReceivedEventHandler(portDataReceived);
                     connectDisconnect = false;
                 }
@@ -103,33 +105,45 @@ namespace Baigiamasis_darbas_Alcotesterio_simuliatorius
                     connect_button1.Text = "Connect";//port is disconnected
                     portClose(port);
                     connectDisconnect = true;
-                    txtReceive.AppendText($"[{dShort} {tShort}] Disconnected\r\n");
+                    richTextBox1.AppendText($"[{dShort} {tShort}] Disconnected\r\n");
 
                 }
             }
             catch (Exception ex) { MessageBox.Show(ex.ToString(), "Error"); }
         }
-        void SendButtonStatusHandler()
+        private void portDataReceived(object sender, SerialDataReceivedEventArgs e)
+        {
+            string inData = port.ReadLine(); // ReadLine includes the + "\n"
+            displayToWindow(inData);
+        }
+
+        private void displayToWindow(string inData)
+        {
+            BeginInvoke(new EventHandler(delegate
+            {
+                DateTime dt = DateTime.Now;
+                String tShort = dt.ToShortTimeString();
+                String dShort = dt.ToShortDateString();
+                richTextBox1.AppendText($"[{dShort} {tShort}] Reveived: {inData}");
+                richTextBox1.ScrollToCaret();
+            }));
+        }
+
+        void SendButtonStatusHandler(SerialPort port)
         {
             DateTime dt = DateTime.Now;
             String tShort = dt.ToShortTimeString();
             String dShort = dt.ToShortDateString();
 
             MessageData message = new MessageData();
-            var messageData = message.AddData();
-            string value = "";
-            if (message.TryGetValue(1, out value))
+            var alcData = message.MessageDictionary();
+
+            if (alcData.TryGetValue(1, out string value))
             {
-                Console.WriteLine("For key = \"tif\", value = {0}.", value);
+                port.Write(value);
+                richTextBox1.AppendText($"[{dShort} {tShort}] Sent: {value}\r\n");
             }
-            String data = txDatatoSend.ToString;
-            port.Write(data);
-            
-            txtReceive.AppendText($"[{dShort} {tShort}] Sent: {data}\r\n");
-
         }
-
-
 
         //=====Portas========================================================
         SerialPort initializeSerialPort()
@@ -138,43 +152,14 @@ namespace Baigiamasis_darbas_Alcotesterio_simuliatorius
             port = new SerialPort(currentComPort, boud, Parity.None, 8, StopBits.One);
             return port;
         }
-
-        //void SerialPortProgram()
-        //{
-        //    SerialPort port = initializeSerialPort();
-
-        //    //Console.WriteLine("Incoming Data:");
-
-        //    // Attach a method to be called when there
-        //    // is data waiting in the port's buffer
-        //    port.DataReceived += new SerialDataReceivedEventHandler(portDataReceived);
-
-            
-        //    port.Open();
-
-        //    // Enter an application loop to keep this thread alive
-        //    //Application.Run(SerialPortProgram());
-        //}
         void portOpen(out SerialPort port)
         {
             // Begin communications
             port = initializeSerialPort();
             port.Open();
         }
-
-        void portDataReceived(object sender, SerialDataReceivedEventArgs e)
-        {
-            // Show all the incoming data in the port's buffer
-            DateTime dt = DateTime.Now;
-            String dtShort = dt.ToShortTimeString();
-
-            //txtReceive.AppendText("[" + dtShort + "] " + "Received: " + port.ReadExisting() + "\n");
-            txtReceive.AppendText($"[{dtShort}] Reveived: {port.ReadExisting()} \n");
-
-        }
         void portClose(SerialPort port)
         {
-            //SerialPort port = initializeSerialPort();
             port.Close();
         }
 
