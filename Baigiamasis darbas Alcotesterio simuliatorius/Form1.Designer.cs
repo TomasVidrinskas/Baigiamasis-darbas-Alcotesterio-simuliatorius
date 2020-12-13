@@ -51,6 +51,7 @@ namespace Baigiamasis_darbas_Alcotesterio_simuliatorius
             this.connect_button1 = new System.Windows.Forms.Button();
             this.boud_comboBox2 = new System.Windows.Forms.ComboBox();
             this.comPort_comboBox1 = new System.Windows.Forms.ComboBox();
+            this.send_button1 = new System.Windows.Forms.Button();
             this.controlPanel_groupBox1.SuspendLayout();
             this.data_groupBox1.SuspendLayout();
             this.alcoMsg_groupBox1.SuspendLayout();
@@ -81,6 +82,7 @@ namespace Baigiamasis_darbas_Alcotesterio_simuliatorius
             // 
             // alcoMsg_groupBox1
             // 
+            this.alcoMsg_groupBox1.Controls.Add(this.send_button1);
             this.alcoMsg_groupBox1.Controls.Add(this.label4);
             this.alcoMsg_groupBox1.Controls.Add(this.textBox1);
             this.alcoMsg_groupBox1.Controls.Add(this.errBreathTemp_checkBox1);
@@ -289,6 +291,16 @@ namespace Baigiamasis_darbas_Alcotesterio_simuliatorius
             this.comPort_comboBox1.TabIndex = 0;
             this.comPort_comboBox1.SelectedIndexChanged += new System.EventHandler(this.comPort_comboBox1_SelectedIndexChanged);
             // 
+            // send_button1
+            // 
+            this.send_button1.Location = new System.Drawing.Point(6, 249);
+            this.send_button1.Name = "send_button1";
+            this.send_button1.Size = new System.Drawing.Size(277, 21);
+            this.send_button1.TabIndex = 12;
+            this.send_button1.Text = "Send";
+            this.send_button1.UseVisualStyleBackColor = true;
+            this.send_button1.Click += new System.EventHandler(this.send_button1_Click);
+            // 
             // Main_Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -332,6 +344,7 @@ namespace Baigiamasis_darbas_Alcotesterio_simuliatorius
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.TextBox txtReceive;
+        private System.Windows.Forms.Button send_button1;
     }
 }
 

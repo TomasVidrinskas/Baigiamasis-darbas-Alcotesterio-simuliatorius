@@ -49,15 +49,11 @@ namespace Baigiamasis_darbas_Alcotesterio_simuliatorius
 
             ConnectButtonStatusHandler(port);
 
-            //int boud = int.Parse(currentBoudRate);
-            //SerialPort port1 = new SerialPort(currentComPort, boud, Parity.None, 8, StopBits.One);
-            //port1.DataReceived += new SerialDataReceivedEventHandler(port_DataReceived);
-            //port1.Open();
-            //Application.Run();
-
+        }
+        private void send_button1_Click(object sender, EventArgs e)
+        {
 
         }
-
 
 
 
@@ -86,31 +82,52 @@ namespace Baigiamasis_darbas_Alcotesterio_simuliatorius
 
         void ConnectButtonStatusHandler(SerialPort port)
         {
+            DateTime dt = DateTime.Now;
+            String tShort = dt.ToShortTimeString();
+            String dShort = dt.ToShortDateString();
             try
             {
-
-
                 if (connectDisconnect)
                 {
-                    DateTime dt = DateTime.Now;
-                    String dtShort = dt.ToShortTimeString();
+                    
                     port = new SerialPort();
-                    connect_button1.Text = "Disconnect";
+
+                    connect_button1.Text = "Disconnect";// port is connected
                     portOpen(out port);
-                    txtReceive.AppendText("[" + dtShort + "] " + "Connected\n");
+                    txtReceive.AppendText($"[{dShort} {tShort}] Connected\r\n");
                     port.DataReceived += new SerialDataReceivedEventHandler(portDataReceived);
                     connectDisconnect = false;
                 }
                 else
                 {
-                    connect_button1.Text = "Connect";
+                    connect_button1.Text = "Connect";//port is disconnected
                     portClose(port);
                     connectDisconnect = true;
+                    txtReceive.AppendText($"[{dShort} {tShort}] Disconnected\r\n");
+
                 }
             }
             catch (Exception ex) { MessageBox.Show(ex.ToString(), "Error"); }
         }
+        void SendButtonStatusHandler()
+        {
+            DateTime dt = DateTime.Now;
+            String tShort = dt.ToShortTimeString();
+            String dShort = dt.ToShortDateString();
 
+            MessageData message = new MessageData();
+            var messageData = message.AddData();
+            string value = "";
+            if (message.TryGetValue(1, out value))
+            {
+                Console.WriteLine("For key = \"tif\", value = {0}.", value);
+            }
+            String data = txDatatoSend.ToString;
+            port.Write(data);
+            
+            txtReceive.AppendText($"[{dShort} {tShort}] Sent: {data}\r\n");
+
+        }
 
 
 
