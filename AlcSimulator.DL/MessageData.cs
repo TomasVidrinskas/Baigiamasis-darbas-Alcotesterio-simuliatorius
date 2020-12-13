@@ -18,7 +18,7 @@ namespace AlcSimulator.DL
                 { 3, "$abt_HICRLF\r\n"},
                 { 4, "$abt_STCRLF\r\n"},
                 { 5, "$abt_OKCRLF\r\n"},
-                { 6, "$abt_Value_xx.yyyCRLF\r\n"},
+                { 6, "$abt_Value_xxxxxCRLF\r\n"},
                 { 7, "$abt_Err-BCRLF\r\n"},
                 { 8, "$abt_Err-OCRLF\r\n"},
                 { 9, "$abt_Err-SCRLF\r\n"},
