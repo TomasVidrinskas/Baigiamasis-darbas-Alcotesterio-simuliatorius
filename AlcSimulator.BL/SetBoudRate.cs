@@ -8,5 +8,6 @@ namespace AlcSimulator.BL
 {
     class SetBoudRate
     {
+
     }
 }

@@ -20,19 +20,21 @@ namespace Baigiamasis_darbas_Alcotesterio_simuliatorius
             InitializeComponent();
             ListAvailableComPorts();
             ListBoudRate();
+            
             connectDisconnect = true;
+            //okMessage = true;
         }
 
         string currentComPort = "";
         string currentBoudRate = "";
         public bool connectDisconnect;
+        public bool okMessage;
+        private string value;
         private SerialPort port;
+        private List<string> listMessages = new List<string>();
 
 
-        private void on_checkBox1_CheckedChanged(object sender, EventArgs e)
-        {
-
-        }
+        //ComboBox
         private void comPort_comboBox1_SelectedIndexChanged(object sender, EventArgs e)
         {
              currentComPort = comPort_comboBox1.SelectedItem.ToString();
@@ -41,22 +43,35 @@ namespace Baigiamasis_darbas_Alcotesterio_simuliatorius
         {
             currentBoudRate = boud_comboBox2.SelectedItem.ToString();
         }
-        // Mygtuko paspaudimas
-        
 
+        // Mygtuku paspaudimas
         public void connect_button1_Click(object sender, EventArgs e)
         {
-
-            ConnectButtonStatusHandler(port);
-
+            CheckBoxHandler();
+            ConnectButtonStatusHandler();
         }
         private void send_button1_Click(object sender, EventArgs e)
         {
-            SendButtonStatusHandler(port);
+            SendButtonStatusHandler();
         }
+ 
 
+        void CheckBoxHandler()
+        {
+            if (belowAlcLim_checkBox5.Checked == true)
+            {
 
+                aboveAlcLim_checkBox4.Enabled = false;
+                okMessage = false;
+            }
+            else
+            {
+                
+                okMessage = true;
+                
 
+            }
+        }
         void ListAvailableComPorts()
         {
             GetComPortNames port = new GetComPortNames();
@@ -80,23 +95,19 @@ namespace Baigiamasis_darbas_Alcotesterio_simuliatorius
             boud_comboBox2.SelectedIndex = 0;
         }
 
-        void ConnectButtonStatusHandler(SerialPort port)
+        void ConnectButtonStatusHandler()
         {
             DateTime dt = DateTime.Now;
-            String tShort = dt.ToShortTimeString();
-            String dShort = dt.ToShortDateString();
+            string tShort = dt.ToShortTimeString();
+            string dShort = dt.ToShortDateString();
             try
             {
                 if (connectDisconnect)
-                {
-                    
-                    port = new SerialPort();
-
+                {                 
                     connect_button1.Text = "Disconnect";// port is connected
                     portOpen(out port);
                     richTextBox1.AppendText($"[{dShort} {tShort}] Connected\r\n");
-                    //port.DataReceived += new SerialDataReceivedEventHandler(portDataReceived);
-                    
+
                     port.DataReceived += new SerialDataReceivedEventHandler(portDataReceived);
                     connectDisconnect = false;
                 }
@@ -109,45 +120,98 @@ namespace Baigiamasis_darbas_Alcotesterio_simuliatorius
 
                 }
             }
-            catch (Exception ex) { MessageBox.Show(ex.ToString(), "Error"); }
-        }
-        private void portDataReceived(object sender, SerialDataReceivedEventArgs e)
-        {
-            string inData = port.ReadLine(); // ReadLine includes the + "\n"
-            displayToWindow(inData);
+            catch (Exception) { MessageBox.Show($"Cannot connect to {currentComPort}","Error"); }
         }
 
-        private void displayToWindow(string inData)
-        {
-            BeginInvoke(new EventHandler(delegate
-            {
-                DateTime dt = DateTime.Now;
-                String tShort = dt.ToShortTimeString();
-                String dShort = dt.ToShortDateString();
-                richTextBox1.AppendText($"[{dShort} {tShort}] Reveived: {inData}");
-                richTextBox1.ScrollToCaret();
-            }));
-        }
-
-        void SendButtonStatusHandler(SerialPort port)
+        void SendButtonStatusHandler()
         {
             DateTime dt = DateTime.Now;
-            String tShort = dt.ToShortTimeString();
-            String dShort = dt.ToShortDateString();
-
+            string tShort = dt.ToShortTimeString();
+            string dShort = dt.ToShortDateString();
+            CheckBoxMessages();
+            try
+            {
+                var messageList = listMessages;
+                if (messageList.Any())
+                {
+                    foreach (string message in messageList)
+                    {
+                        port.Write(message);
+                        richTextBox1.AppendText($"[{dShort} {tShort}] Sent: {message}\r\n");
+                    }
+                    listMessages.Clear();
+                }
+                else
+                {
+                    richTextBox1.AppendText($"[{dShort} {tShort}] NOT ONE CHECK BOX IS SELECTED, NOTHING TO SEND!\r\n");
+                }
+                
+            }
+            catch (Exception ex) { MessageBox.Show(ex.ToString(), "Error"); }
+        }
+        void MessageHandler(int checkBox)
+        {
             MessageData message = new MessageData();
             var alcData = message.MessageDictionary();
-
-            if (alcData.TryGetValue(1, out string value))
+            int checkBoxMessage = checkBox;
+            alcData.TryGetValue(checkBoxMessage, out string value1);
+            
+            listMessages.Add(value1);
+            //return value1;
+   
+        }
+        void CheckBoxMessages()
+        {
+            if (on_checkBox1.Checked == true)
             {
-                port.Write(value);
-                richTextBox1.AppendText($"[{dShort} {tShort}] Sent: {value}\r\n");
+                MessageHandler(1);
+            }
+            if(blow_checkBox2.Checked == true)
+            {
+                MessageHandler(2);
+            }
+            if (aboveDispl_checkBox3.Checked == true)
+            {
+                MessageHandler(3);
+            }
+            if (aboveAlcLim_checkBox4.Checked == true)
+            {
+                MessageHandler(4);
+            }
+            if (belowAlcLim_checkBox5.Checked == true)
+            {
+                MessageHandler(5);
+            }
+            if (value_checkBox6.Checked == true)
+            {
+
+            }
+            if (errFlow_checkBox7.Checked == true)
+            {
+                MessageHandler(7);
+            }
+            if (errTemp_checkBox8.Checked == true)
+            {
+                MessageHandler(8);
+            }
+            if (errSuck_checkBox9.Checked == true)
+            {
+                MessageHandler(9);
+            }
+            if (errBreathTemp_checkBox1.Checked == true)
+            {
+                MessageHandler(10);
             }
         }
+        //void PridetiPrieNeteisingu(string spejimas, List<string> neteisingiSpejimai)
+        //{
+        //    neteisingiSpejimai.Add(spejimas);
+        //}
 
-        //=====Portas========================================================
+            //=====Portas========================================================
         SerialPort initializeSerialPort()
         {
+            port = new SerialPort();
             int boud = int.Parse(currentBoudRate);
             port = new SerialPort(currentComPort, boud, Parity.None, 8, StopBits.One);
             return port;
@@ -162,7 +226,22 @@ namespace Baigiamasis_darbas_Alcotesterio_simuliatorius
         {
             port.Close();
         }
-
+        private void portDataReceived(object sender, SerialDataReceivedEventArgs e)
+        {
+            string inData = port.ReadLine(); // ReadLine includes the + "\n"
+            displayToWindow(inData);
+        }
+        private void displayToWindow(string inData)
+        {
+            BeginInvoke(new EventHandler(delegate
+            {
+                DateTime dt = DateTime.Now;
+                string tShort = dt.ToShortTimeString();
+                string dShort = dt.ToShortDateString();
+                richTextBox1.AppendText($"[{dShort} {tShort}] Reveived: {inData}");
+                richTextBox1.ScrollToCaret();
+            }));
+        }
 
     }
 }
