@@ -1,15 +1,10 @@
-﻿using System;
+﻿using AlcSimulator.BL;
+using AlcSimulator.DL;
+using System;
 using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
 using System.IO.Ports;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
-using AlcSimulator.BL;
-using AlcSimulator.DL;
 
 namespace Baigiamasis_darbas_Alcotesterio_simuliatorius
 {
@@ -23,7 +18,7 @@ namespace Baigiamasis_darbas_Alcotesterio_simuliatorius
             isPortOpen = false;
             connectDisconnect = true;
             areThereMessagesToSend = false;
-            
+
         }
 
         string currentComPort = "";
@@ -38,8 +33,8 @@ namespace Baigiamasis_darbas_Alcotesterio_simuliatorius
         //ComboBox
         private void comPort_comboBox1_SelectedIndexChanged(object sender, EventArgs e)
         {
-             currentComPort = comPort_comboBox1.SelectedItem.ToString();
-        } 
+            currentComPort = comPort_comboBox1.SelectedItem.ToString();
+        }
         private void boud_comboBox2_SelectedIndexChanged(object sender, EventArgs e)
         {
             currentBoudRate = boud_comboBox2.SelectedItem.ToString();
@@ -48,14 +43,14 @@ namespace Baigiamasis_darbas_Alcotesterio_simuliatorius
         // Mygtuku paspaudimas
         public void connect_button1_Click(object sender, EventArgs e)
         {
-            
+
             ConnectButtonStatusHandler();
         }
         private void send_button1_Click(object sender, EventArgs e)
         {
             SendButtonStatusHandler();
         }
- 
+
         void ListAvailableComPorts()
         {
             GetComPortNames port = new GetComPortNames();
@@ -87,7 +82,7 @@ namespace Baigiamasis_darbas_Alcotesterio_simuliatorius
             try
             {
                 if (connectDisconnect)
-                {                 
+                {
                     connect_button1.Text = "Disconnect";// port is connected
                     portOpen(out port);
                     richTextBox1.AppendText($"[{dShort} {tShort}] Connected\r\n");
@@ -106,7 +101,7 @@ namespace Baigiamasis_darbas_Alcotesterio_simuliatorius
 
                 }
             }
-            catch (Exception) { MessageBox.Show($"Cannot connect to {currentComPort}","Error"); }
+            catch (Exception) { MessageBox.Show($"Cannot connect to {currentComPort}", "Error"); }
         }
         bool CheckIsthereMesagesToSend()
         {
@@ -157,10 +152,10 @@ namespace Baigiamasis_darbas_Alcotesterio_simuliatorius
             var alcData = message.MessageDictionary();
             int checkBoxMessage = checkBox;
             alcData.TryGetValue(checkBoxMessage, out string value1);
-            
+
             listMessages.Add(value1);
-            
-   
+
+
         }
         void CheckBoxMessages()
         {
@@ -168,7 +163,7 @@ namespace Baigiamasis_darbas_Alcotesterio_simuliatorius
             {
                 MessageHandler(1);
             }
-            if(blow_checkBox2.Checked == true)
+            if (blow_checkBox2.Checked == true)
             {
                 MessageHandler(2);
             }
@@ -211,13 +206,11 @@ namespace Baigiamasis_darbas_Alcotesterio_simuliatorius
             var alcData = message.MessageDictionary();
             int checkBoxMessage = checkBox;
             alcData.TryGetValue(checkBoxMessage, out string value1);
-
-            
-            string alcValue = textBox1.Text;
+            string alcInputValue = textBox1.Text;
             //alcValue = textBox1.Text;
-            if (int.TryParse(alcValue, out int intAlcValue))
+            if (int.TryParse(alcInputValue, out int intAlcValue))
             {
-                listMessages.Add(value1.Replace("xxxxx", alcValue).Insert(13, "."));
+                listMessages.Add(value1.Replace("xxxxx", alcInputValue).Insert(13, "."));
             }
             else
             {
@@ -251,11 +244,11 @@ namespace Baigiamasis_darbas_Alcotesterio_simuliatorius
         {
             try
             {
-               string inData = port.ReadLine(); // ReadLine includes the + "\n"
+                string inData = port.ReadLine(); // ReadLine includes the + "\n"
                 displayToWindow(inData);
             }
-            catch (Exception) {MessageBox.Show("Connection error check Boudrate", "Error"); }
-            
+            catch (Exception) { MessageBox.Show("Connection error check Boudrate", "Error"); }
+
         }
         private void displayToWindow(string inData)
         {
@@ -268,7 +261,7 @@ namespace Baigiamasis_darbas_Alcotesterio_simuliatorius
                 richTextBox1.ScrollToCaret();
             }));
         }
-
+        //Checkbox Logika================================================================================
         private void aboveAlcLim_checkBox4_CheckedChanged(object sender, EventArgs e)
         {
             if (aboveAlcLim_checkBox4.Checked)
@@ -279,15 +272,15 @@ namespace Baigiamasis_darbas_Alcotesterio_simuliatorius
                 errSuck_checkBox9.Enabled = false;
                 errBreathTemp_checkBox1.Enabled = false;
             }
-            else 
-            { 
+            else
+            {
                 belowAlcLim_checkBox5.Enabled = true;
                 errFlow_checkBox7.Enabled = true;
                 errTemp_checkBox8.Enabled = true;
                 errSuck_checkBox9.Enabled = true;
                 errBreathTemp_checkBox1.Enabled = true;
             }
-            
+
         }
 
         private void belowAlcLim_checkBox5_CheckedChanged(object sender, EventArgs e)
