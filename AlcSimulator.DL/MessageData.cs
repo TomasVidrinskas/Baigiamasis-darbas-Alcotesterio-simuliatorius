@@ -13,16 +13,16 @@ namespace AlcSimulator.DL
         {
             Dictionary<int, string> alcData = new Dictionary<int, string>()
             {
-                { 1, "$abt_PCRLF\r\n"},
-                { 2, "$abt_SCRLF\r\n"},
-                { 3, "$abt_HICRLF\r\n"},
-                { 4, "$abt_STCRLF\r\n"},
-                { 5, "$abt_OKCRLF\r\n"},
-                { 6, "$abt_Value_xxxxxCRLF\r\n"},
-                { 7, "$abt_Err-BCRLF\r\n"},
-                { 8, "$abt_Err-OCRLF\r\n"},
-                { 9, "$abt_Err-SCRLF\r\n"},
-                { 10, "$abt_Err-tCRLF\r\n"},
+                { 1, "$abt_P\r\n"},
+                { 2, "$abt_S\r\n"},
+                { 3, "$abt_H\r\n"},
+                { 4, "$abt_S\r\n"},
+                { 5, "$abt_OK\r\n"},
+                { 6, "$abt_Value_xxxxx g/L\r\n"},
+                { 7, "$abt_Err-B\r\n"},
+                { 8, "$abt_Err-O\r\n"},
+                { 9, "$abt_Err-S\r\n"},
+                { 10, "$abt_Err-t\r\n"},
 
             };
             return alcData;

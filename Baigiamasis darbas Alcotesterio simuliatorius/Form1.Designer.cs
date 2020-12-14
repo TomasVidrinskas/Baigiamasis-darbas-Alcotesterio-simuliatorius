@@ -124,18 +124,18 @@ namespace Baigiamasis_darbas_Alcotesterio_simuliatorius
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(196, 135);
+            this.label4.Location = new System.Drawing.Point(173, 134);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(81, 13);
+            this.label4.Size = new System.Drawing.Size(99, 13);
             this.label4.TabIndex = 11;
-            this.label4.Text = "from 0 to 99999";
+            this.label4.Text = "from 0000 to 99999";
             // 
             // textBox1
             // 
             this.textBox1.Location = new System.Drawing.Point(108, 131);
             this.textBox1.MaxLength = 5;
             this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(82, 20);
+            this.textBox1.Size = new System.Drawing.Size(59, 20);
             this.textBox1.TabIndex = 10;
             // 
             // errBreathTemp_checkBox1
@@ -147,6 +147,7 @@ namespace Baigiamasis_darbas_Alcotesterio_simuliatorius
             this.errBreathTemp_checkBox1.TabIndex = 9;
             this.errBreathTemp_checkBox1.Text = "Error in breath temperature";
             this.errBreathTemp_checkBox1.UseVisualStyleBackColor = true;
+            this.errBreathTemp_checkBox1.CheckedChanged += new System.EventHandler(this.errBreathTemp_checkBox1_CheckedChanged);
             // 
             // errSuck_checkBox9
             // 
@@ -157,6 +158,7 @@ namespace Baigiamasis_darbas_Alcotesterio_simuliatorius
             this.errSuck_checkBox9.TabIndex = 8;
             this.errSuck_checkBox9.Text = "Error in sucking test";
             this.errSuck_checkBox9.UseVisualStyleBackColor = true;
+            this.errSuck_checkBox9.CheckedChanged += new System.EventHandler(this.errSuck_checkBox9_CheckedChanged);
             // 
             // errTemp_checkBox8
             // 
@@ -167,6 +169,7 @@ namespace Baigiamasis_darbas_Alcotesterio_simuliatorius
             this.errTemp_checkBox8.TabIndex = 7;
             this.errTemp_checkBox8.Text = "Error for outdoor temperature";
             this.errTemp_checkBox8.UseVisualStyleBackColor = true;
+            this.errTemp_checkBox8.CheckedChanged += new System.EventHandler(this.errTemp_checkBox8_CheckedChanged);
             // 
             // errFlow_checkBox7
             // 
@@ -177,6 +180,7 @@ namespace Baigiamasis_darbas_Alcotesterio_simuliatorius
             this.errFlow_checkBox7.TabIndex = 6;
             this.errFlow_checkBox7.Text = "Error for blowing flow";
             this.errFlow_checkBox7.UseVisualStyleBackColor = true;
+            this.errFlow_checkBox7.CheckedChanged += new System.EventHandler(this.errFlow_checkBox7_CheckedChanged);
             // 
             // value_checkBox6
             // 
@@ -197,6 +201,7 @@ namespace Baigiamasis_darbas_Alcotesterio_simuliatorius
             this.belowAlcLim_checkBox5.TabIndex = 4;
             this.belowAlcLim_checkBox5.Text = "Below alcohol limit";
             this.belowAlcLim_checkBox5.UseVisualStyleBackColor = true;
+            this.belowAlcLim_checkBox5.CheckedChanged += new System.EventHandler(this.belowAlcLim_checkBox5_CheckedChanged);
             // 
             // aboveAlcLim_checkBox4
             // 
@@ -207,6 +212,7 @@ namespace Baigiamasis_darbas_Alcotesterio_simuliatorius
             this.aboveAlcLim_checkBox4.TabIndex = 3;
             this.aboveAlcLim_checkBox4.Text = "Above alcohol limit";
             this.aboveAlcLim_checkBox4.UseVisualStyleBackColor = true;
+            this.aboveAlcLim_checkBox4.CheckedChanged += new System.EventHandler(this.aboveAlcLim_checkBox4_CheckedChanged);
             // 
             // aboveDispl_checkBox3
             // 

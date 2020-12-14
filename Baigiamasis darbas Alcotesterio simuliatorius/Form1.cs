@@ -29,7 +29,6 @@ namespace Baigiamasis_darbas_Alcotesterio_simuliatorius
         string currentComPort = "";
         string currentBoudRate = "";
         public bool connectDisconnect;
-        public bool okMessage;
         public bool isPortOpen;
         public bool areThereMessagesToSend;
         private SerialPort port;
@@ -49,7 +48,7 @@ namespace Baigiamasis_darbas_Alcotesterio_simuliatorius
         // Mygtuku paspaudimas
         public void connect_button1_Click(object sender, EventArgs e)
         {
-            CheckBoxHandler();
+            
             ConnectButtonStatusHandler();
         }
         private void send_button1_Click(object sender, EventArgs e)
@@ -57,23 +56,6 @@ namespace Baigiamasis_darbas_Alcotesterio_simuliatorius
             SendButtonStatusHandler();
         }
  
-        //SITA REIKIA PABAIGTI ARBA ISTRINTI
-        void CheckBoxHandler()
-        {
-            if (belowAlcLim_checkBox5.Checked == true)
-            {
-
-                aboveAlcLim_checkBox4.Enabled = false;
-                okMessage = false;
-            }
-            else
-            {
-                
-                okMessage = true;
-                
-
-            }
-        }
         void ListAvailableComPorts()
         {
             GetComPortNames port = new GetComPortNames();
@@ -109,6 +91,7 @@ namespace Baigiamasis_darbas_Alcotesterio_simuliatorius
                     connect_button1.Text = "Disconnect";// port is connected
                     portOpen(out port);
                     richTextBox1.AppendText($"[{dShort} {tShort}] Connected\r\n");
+                    richTextBox1.ScrollToCaret();
 
                     port.DataReceived += new SerialDataReceivedEventHandler(portDataReceived);
                     connectDisconnect = false;
@@ -119,6 +102,7 @@ namespace Baigiamasis_darbas_Alcotesterio_simuliatorius
                     PortClose(port);
                     connectDisconnect = true;
                     richTextBox1.AppendText($"[{dShort} {tShort}] Disconnected\r\n");
+                    richTextBox1.ScrollToCaret();
 
                 }
             }
@@ -230,14 +214,14 @@ namespace Baigiamasis_darbas_Alcotesterio_simuliatorius
 
             
             string alcValue = textBox1.Text;
-            alcValue = textBox1.Text;
+            //alcValue = textBox1.Text;
             if (int.TryParse(alcValue, out int intAlcValue))
             {
-                listMessages.Add(value1.Replace("xxxxx", alcValue));
+                listMessages.Add(value1.Replace("xxxxx", alcValue).Insert(13, "."));
             }
             else
             {
-                MessageBox.Show("Please enter only numbers from 0 to 9999", "Error");
+                MessageBox.Show("Please enter only numbers from 0000 to 9999", "Error");
 
             }
 
@@ -285,5 +269,123 @@ namespace Baigiamasis_darbas_Alcotesterio_simuliatorius
             }));
         }
 
+        private void aboveAlcLim_checkBox4_CheckedChanged(object sender, EventArgs e)
+        {
+            if (aboveAlcLim_checkBox4.Checked)
+            {
+                belowAlcLim_checkBox5.Enabled = false;
+                errFlow_checkBox7.Enabled = false;
+                errTemp_checkBox8.Enabled = false;
+                errSuck_checkBox9.Enabled = false;
+                errBreathTemp_checkBox1.Enabled = false;
+            }
+            else 
+            { 
+                belowAlcLim_checkBox5.Enabled = true;
+                errFlow_checkBox7.Enabled = true;
+                errTemp_checkBox8.Enabled = true;
+                errSuck_checkBox9.Enabled = true;
+                errBreathTemp_checkBox1.Enabled = true;
+            }
+            
+        }
+
+        private void belowAlcLim_checkBox5_CheckedChanged(object sender, EventArgs e)
+        {
+            if (belowAlcLim_checkBox5.Checked)
+            {
+                aboveAlcLim_checkBox4.Enabled = false;
+                errFlow_checkBox7.Enabled = false;
+                errTemp_checkBox8.Enabled = false;
+                errSuck_checkBox9.Enabled = false;
+                errBreathTemp_checkBox1.Enabled = false;
+            }
+            else
+            {
+                aboveAlcLim_checkBox4.Enabled = true;
+                errFlow_checkBox7.Enabled = true;
+                errTemp_checkBox8.Enabled = true;
+                errSuck_checkBox9.Enabled = true;
+                errBreathTemp_checkBox1.Enabled = true;
+            }
+
+        }
+
+        private void errFlow_checkBox7_CheckedChanged(object sender, EventArgs e)
+        {
+            if (errFlow_checkBox7.Checked || errTemp_checkBox8.Checked || errSuck_checkBox9.Checked || errBreathTemp_checkBox1.Checked)
+            {
+                aboveAlcLim_checkBox4.Enabled = false;
+                belowAlcLim_checkBox5.Enabled = false;
+                value_checkBox6.Enabled = false;
+                textBox1.Enabled = false;
+                value_checkBox6.Checked = false;
+            }
+            else
+            {
+                aboveAlcLim_checkBox4.Enabled = true;
+                belowAlcLim_checkBox5.Enabled = true;
+                value_checkBox6.Enabled = true;
+                textBox1.Enabled = true; ;
+            }
+        }
+
+        private void errTemp_checkBox8_CheckedChanged(object sender, EventArgs e)
+        {
+            if (errFlow_checkBox7.Checked || errTemp_checkBox8.Checked || errSuck_checkBox9.Checked || errBreathTemp_checkBox1.Checked)
+            {
+                aboveAlcLim_checkBox4.Enabled = false;
+                belowAlcLim_checkBox5.Enabled = false;
+                value_checkBox6.Enabled = false;
+                textBox1.Enabled = false;
+                value_checkBox6.Checked = false;
+            }
+            else
+            {
+                aboveAlcLim_checkBox4.Enabled = true;
+                belowAlcLim_checkBox5.Enabled = true;
+                value_checkBox6.Enabled = true;
+                textBox1.Enabled = true; ;
+            }
+        }
+
+        private void errSuck_checkBox9_CheckedChanged(object sender, EventArgs e)
+        {
+            if (errFlow_checkBox7.Checked || errTemp_checkBox8.Checked || errSuck_checkBox9.Checked || errBreathTemp_checkBox1.Checked)
+            {
+                aboveAlcLim_checkBox4.Enabled = false;
+                belowAlcLim_checkBox5.Enabled = false;
+                value_checkBox6.Enabled = false;
+                textBox1.Enabled = false;
+                value_checkBox6.Checked = false;
+            }
+            else
+            {
+                aboveAlcLim_checkBox4.Enabled = true;
+                belowAlcLim_checkBox5.Enabled = true;
+                value_checkBox6.Enabled = true;
+                textBox1.Enabled = true; ;
+            }
+        }
+
+        private void errBreathTemp_checkBox1_CheckedChanged(object sender, EventArgs e)
+        {
+            if (errFlow_checkBox7.Checked || errTemp_checkBox8.Checked || errSuck_checkBox9.Checked || errBreathTemp_checkBox1.Checked)
+            {
+                aboveAlcLim_checkBox4.Enabled = false;
+                belowAlcLim_checkBox5.Enabled = false;
+                value_checkBox6.Enabled = false;
+                textBox1.Enabled = false;
+                value_checkBox6.Checked = false;
+
+            }
+            else
+            {
+                aboveAlcLim_checkBox4.Enabled = true;
+                belowAlcLim_checkBox5.Enabled = true;
+                value_checkBox6.Enabled = true;
+                textBox1.Enabled = true;
+            }
+        }
     }
 }
